@@ -9,11 +9,13 @@ import tensorflow as tf
 @st.cache_resource
 def load_artifacts():
     """Loads the model and transformers once, keeping them in memory."""
-    # Add compile=False to bypass metric deserialization issues
     model = tf.keras.models.load_model("artifacts/housing_model.h5", compile=False)
-    
     scaler = joblib.load("artifacts/scaler.pkl")
-    features = joblib.load("artifacts/feature_names.pkl")
+    
+    # FIX: Ignore the broken feature_names.pkl file entirely. 
+    # Extract the exact one-hot encoded columns the scaler memorized!
+    features = scaler.feature_names_in_
+    
     return model, scaler, features
 
 # Unpack the cached artifacts
@@ -73,4 +75,5 @@ if st.button("Predict Appraised Value"):
         prediction = model.predict(X_input)[0][0]
     
     st.success(f"Estimated Appraised Value: ${prediction:,.2f}")
+
 

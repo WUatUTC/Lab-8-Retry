@@ -1,11 +1,7 @@
-tensorflow==2.18
-python==3.10
+tensorflow==2.10
 pandas
 numpy
 scikit-learn
 streamlit
 joblib
 matplotlib
-
-
-

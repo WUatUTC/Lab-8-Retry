@@ -1,8 +1,10 @@
-tensorflow==2.15.0
+tensorflow==2.18
+python=3.10
 pandas
 numpy
 scikit-learn
 streamlit
 joblib
 matplotlib
+
 
